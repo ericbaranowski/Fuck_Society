@@ -1,7 +1,3 @@
-Github: https://www.github.com/NotFoundError/FuckSociety
-Autore: Not_Found_Error
-LIngua: Italiano
-
 Changelog:
 ==========
 1.0.0 - Nessuna novità
@@ -39,4 +35,5 @@ Per qualsiasi tipo di errore all'interno del programma o se hai suggerimenti per
 al seguente indirizzo email: notfound00@gmail.com
 
 
+| Github: https://www.github.com/NotFoundError/FuckSociety | Autore: Not_Found_Error | Lingua: Italiano 
 
