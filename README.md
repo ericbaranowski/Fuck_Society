@@ -44,7 +44,7 @@ Pensa prima di premere invio!
 Per qualsiasi tipo di errore all'interno del programma o se hai suggerimenti 
 per il miglioramento, sei pregato di contattarmi tramite indirizzo email
 o tramite Github.
-email:
+Email:
 > notfound00@gmail.com
 
 
