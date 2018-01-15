@@ -2043,8 +2043,8 @@ def logo_menu():
         logo_print()
 def logo_print():
     try:
-        print("/ Public IP : {}".format(blue + socket.gethostbyname(socket.gethostname()) + end))
-        print("/ Local IP  : {}".format(blue + requests.get('http://ip.42.pl/raw').text + end))
+        print("/ Public IP : {}".format(blue + requests.get('http://ip.42.pl/raw').text + end))
+        print("/ Local IP  : {}".format(blue + socket.gethostbyname(socket.gethostname()) + end))
         print("/ Interface : {}".format(blue + netifaces.gateways()['default'][netifaces.AF_INET][1] + end))
     except (socket.error,requests.exceptions.ConnectionError,KeyError):
         if socket.error:
