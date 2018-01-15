@@ -42,9 +42,10 @@ furto di dati, ecc...
 Pensa prima di premere invio!
 
 Per qualsiasi tipo di errore all'interno del programma o se hai suggerimenti 
-per il miglioramento, sei pregato di contattarmi al seguente indirizzo 
-email: 
---> notfound00@gmail.com
+per il miglioramento, sei pregato di contattarmi tramite indirizzo email
+o tramite Github.
+email:
+> notfound00@gmail.com
 
 
 | Github: https://www.github.com/NotFoundError/FuckSociety
