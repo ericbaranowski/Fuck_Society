@@ -1,6 +1,6 @@
-#FuckSociety
-#Author: Not_Found_Error
-#Language: Italian
+Github: https://www.github.com/NotFoundError/FuckSociety
+Autore: Not_Found_Error
+LIngua: Italiano
 
 Changelog:
 ==========
