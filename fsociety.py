@@ -29,7 +29,7 @@ bright_cyan = '\033[1;36m'
 bright_yellow = '\033[1;33m'
 #
 underline = '\033[4m'
-Tools = "124 Tools"
+Tools = "125 Tools"
 
 if sys.version_info.major >= 2.7:
     print("\n[ {}Attenzione{} ]: Questa versione non e' supportata dal tuo sistema.".format(bright_yellow, end))
@@ -96,7 +96,7 @@ def menu():
     # Gathering
     "geoip", "whois", "maltego", "sn1per", "red_hawk", "ktfconsole", "operativef", "dmitry", "inspy","credmap","theharvester",
     # WebApp
-    "xerxes", "ufonet", "zambie", "goldeneye","recon-ng","sslscan","ipmipwn","xsstracer","fbht","pybomber","whatweb","commix","onioff",
+    "xerxes", "ufonet", "zambie", "goldeneye","recon-ng","sslscan","ipmipwn","xsstracer","fbht","pybomber","whatweb","commix","onioff","joomscan",
     "sqlmap","scan","inj", "sqliv","dork","web","jaidam","sshscan","pentmenu","a2sv","crips","vbscan","torshammer","siege","brutesploit",
     "cpscan","dtect", "dracnmap", "sechub", "arachni", "wpscan", "zaproxy", "zenmap", "uniscan", "droopescan", "striker","instarecon","dsxs",
     "hydra","ftp", "xhydra", "tulpar", "bingoo","xattacker", "knockmail", "osrframework","blazy", "xsssniper","sublist3r","urlextractor",
@@ -217,8 +217,11 @@ def menu():
             os.system("xterm -T 'Updating...' -e 'apt update && apt upgrade -y && apt dist-upgrade -y && apt autoremove -y'")
             os.system("shutdown")
             return menu()
+        sys.stdout.write("[*] Aggiorno ")
+        sys.stdout.flush()
         os.system("xterm -T 'Updating...' -e 'apt update && apt upgrade -y && apt dist-upgrade -y && apt autoremove -y'")
-        print("[ {}OK{} ] Aggiornamento completato.".format(bright_green,end))
+        sys.stdout.write("[ {}DONE{} ]\n".format(bright_green,end))
+        sys.stdout.flush()
         return menu()
     elif command == 'updatedb':
         os.system("updatedb")
@@ -279,9 +282,9 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
             if argument == 'start' or argument == 'restart' or argument == 'stop' or argument == 'reload':
                 return menu()
             else:
-                print("[ {}Errore{} ]: {}service{} richiede un'opzione.".format(red,end, blue,end))
+                print("[ {}Errore{} ]: {}service{} richiede un opzione.".format(red,end, blue,end))
         else:
-            print("[ {}Errore{} ]: {}service{} richiede un servizio e un'opzione.".format(red,end, blue,end))
+            print("[ {}Errore{} ]: {}service{} richiede un servizio e un opzione.".format(red,end, blue,end))
         return menu()
 
     elif command == 'ifconfig':
@@ -391,7 +394,7 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
                 print("")
                 return menu()
         else:
-            print("[ {}Errore{} ]: {}IosCrack{} richiede un'opzione valida. Digita {}ioscrack -h{} per ulteriori comandi.".format(red,end, blue,end, blue,end))
+            print("[ {}Errore{} ]: {}IosCrack{} richiede un opzione valida. Digita {}ioscrack -h{} per ulteriori comandi.".format(red,end, blue,end, blue,end))
             return menu()
     elif command == 'patator':
         if option: # 1
@@ -852,7 +855,7 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
         elif option == 'inj':
             sqlmap_startup()
         else:
-            print("[ {}Errore{} ]: {}Sqlmap{} richiede un'opzione valida.".format(red,end, blue,end))
+            print("[ {}Errore{} ]: {}Sqlmap{} richiede un opzione valida.".format(red,end, blue,end))
         return menu()
     elif command == 'sqliv':
         if option == 'dork':
@@ -1098,6 +1101,40 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
             return menu()
         else:
             print("[ {}Errore{} ]: {}Dsxs{} richiede un indirizzo.".format(red,end, blue,end))
+            return menu()
+    elif command == 'joomscan':
+        if option:
+            if option == '-h':
+                print("")
+                print("[{}Comandi Joomscan{}]:".format(bright_green,end))
+                print(" Come usarlo:  $ joomscan <target> [options]")
+                print("")
+                print(" -nf  : No Firewall   - Nessun rilevamento del Firewall")
+                print(" -nv  : No Version    - Nessun Rilevamento della versione")
+                print(" -nvf : No V. & No F. - Nessun Rilevamento Firewall e Versione")
+                print(" -vu  : Verbosity     - Mostra un output piu' verboso")
+                print("")
+                return menu()
+            if argument:
+                if argument2:
+                    if argument3:
+                        if argument4:
+                            os.system("joomscan -u {} -sp {} {} {} {}".format(option, argument, argument2, argument3, argument4))
+                            return menu()
+                        os.system("joomscan -u {} -sp {} {} {}".format(option, argument, argument2, argument3))
+                        return menu()
+                    os.system("joomscan -u {} -sp {} {}".format(option, argument, argument2))
+                    return menu()
+                elif argument == '-nf' or argument == '-vu' or argument == '-nvf' or argument == '-nv':
+                    os.system("joomscan -u {} -sp {}".format(option,argument))
+                    return menu()
+                else:
+                    print("[ {}Errore{} ]: {}Joomscan{} richiede un opzione valida.".format(red,end, blue,end))
+                    return menu()
+            os.system("joomscan -u {} -sp".format(option))
+            return menu()
+        else:
+            print("[ {}Errore{} ]: {}Joomscan{} richiede un indirizzo. Digita {}joomscan -h{} per ulteriori comandi.".format(red,end, blue,end, blue,end))
             return menu()
 
     # BruteForce
@@ -1457,7 +1494,7 @@ def help():
     print("           $ jaidam / uniscan * / droopescan / xsssniper * / vbscan * / dracnmap / zaproxy ") ; sleep(.01)
     print("           $ a2sv * / xattacker / sslscan * / wpscan * / xsstracer / arachni * / sshscan * ") ; sleep(.01)
     print("           $ dtect / striker / zenmap / crips / bingoo / whatweb * / siege * / onioff *    ") ; sleep(.01)
-    print("           $ urlextractor * / instarecon * / dsxs *                                        ") ; sleep(.01)
+    print("           $ urlextractor * / instarecon * / dsxs * / joomscan *                           ") ; sleep(.01)
     print("        [{}Enumerators{}]:                                                                 ".format(bright_green, end)) ; sleep(.01)
     print("           $ sublist3r *                                                                   ") ; sleep(.01)
     print("        [{}All-in-one{}]:                                                                  ".format(bright_green, end)) ; sleep(.01)
@@ -1996,7 +2033,7 @@ def logo_menu():
     print('  888888 88   88  dP""b8 88  dP     .dP"Y8  dP"Yb   dP""b8 88 888888 888888 Yb  dP        ') ; sleep(.02)
     print('  88__   88   88 dP   `" 88odP      `Ybo." dP   Yb dP   `" 88 88__     88    YbdP         ') ; sleep(.02)
     print('  88""   Y8   8P Yb      88"Yb      o.`Y8b Yb   dP Yb      88 88""     88     8P          ') ; sleep(.02)
-    print('  88     `YbodP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.0{}]'.format(red,end)) ; sleep(.02)
+    print('  88     `YbodP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.1{}]'.format(red,end)) ; sleep(.02)
     print(" [ {}Not_Found_Error{} / {}{}{} ]                                                         ".format(bright_green,end, bright_green,Tools,end, dark_gray,end)) ; sleep(.02)
     print("") ; sleep(.3)
     try:
@@ -2006,22 +2043,17 @@ def logo_menu():
         logo_print()
 def logo_print():
     try:
-        print("---] Local IP   :  " + blue + [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0] + end)
-        print("---] Public IP  :  " + blue + requests.get('http://ip.42.pl/raw').text + end)
-        print("---] Interface  :  " + blue + netifaces.gateways()['default'][netifaces.AF_INET][1] + end)
-        time.sleep(.1)
+        print("/ Public IP : {}".format(blue + socket.gethostbyname(socket.gethostname()) + end))
+        print("/ Local IP  : {}".format(blue + requests.get('http://ip.42.pl/raw').text + end))
+        print("/ Interface : {}".format(blue + netifaces.gateways()['default'][netifaces.AF_INET][1] + end))
     except (socket.error,requests.exceptions.ConnectionError,KeyError):
         if socket.error:
             print("---] Local IP   :  " + blue + "-" + end)
-            time.sleep(.1)
         if requests.exceptions.ConnectionError:
             print("---] Public IP  :  " + blue + "-  " + end + "[ {}Attenzione{} ]: Disattiva {}TorGhost{} o verifica la tua connessione.".format(bright_yellow,end, blue,end))
-            time.sleep(.1)
         if KeyError:
             print("---] Interface  :  " + blue + "-" + end)
-            time.sleep(.1)
-    print("---] System     :  {}{} {} {}{}".format(blue, platform.linux_distribution()[0], platform.system(), platform.architecture()[0], end))
-    time.sleep(.1)
+    print("/ System    : {} {}".format(blue + platform.linux_distribution()[0], platform.system() + end))
     print("") ; sleep(.3)
     return menu()
 ################################################################################
