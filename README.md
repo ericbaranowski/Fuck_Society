@@ -1,6 +1,10 @@
 Changelog:
 ==========
-1.0.0 - Nessuna novità
+1.0.1:
+- Nuovo Tool Aggiunto
+- Miglioramenti Generali
+1.0.0:
+- Nessuna novità
 
 Installazione:
 ==============
