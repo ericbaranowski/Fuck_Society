@@ -1,6 +1,6 @@
-# FuckSociety
-# Author: Not_Found_Error
-# Language: Italian
+#FuckSociety
+#Author: Not_Found_Error
+#Language: Italian
 
 Changelog:
 ==========
