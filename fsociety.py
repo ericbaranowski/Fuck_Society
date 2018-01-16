@@ -1459,12 +1459,6 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
         time.sleep(1)
         return menu()
     #
-    elif command == 'bestemmia' or command == 'porcona':
-        porconi_list = ["Dio cane succhia Ram", "Madonna socket sputtanato.","Madonna Madonna.","Dio sculacciatopi.","Dio paninaro.","Gesu' pecora nella valle dei sardi arrapati.","Madonna Microsoft.","Madonna Shuttle.","Madonna idrovolante.","Madonna erbaccia.","Dio porco.","Dio cane.","Dio morbillo.","Dio impero Romano.","Dio zoo.","Dio Trump-olino.","Dio ebreo ucciso dal gas.","Dio bianco stupra bambini.","Dio negro ladro di bici.", "Dio televisore rotto.", "Madonna imbianchina di cazzi."]
-        secure_random = random.SystemRandom()
-        print("\n[ {}{}{} ]\n".format(bright_green,secure_random.choice(porconi_list),end))
-        return menu()
-
     else:
         print("[ {}Errore{} ]: Scelta non valida. Usa {}help{} in caso di panico.".format(red,end, blue,end))
         return menu()
