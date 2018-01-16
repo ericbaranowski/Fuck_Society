@@ -2030,10 +2030,10 @@ def logo_menu():
     os.system("reset")
     now = datetime.datetime.now()
     print("")
-    print('  888888 88   88  dP""b8 88  dP     .dP"Y8  dP"Yb   dP""b8 88 888888 888888 Yb  dP        ') ; sleep(.02)
+    print('  88F888 88   88  dP""db 88  dP     .dP"Y8  dP"Yb   dP""b8 88 888888 888888 Yb  dP        ') ; sleep(.02)
     print('  88__   88   88 dP   `" 88odP      `Ybo." dP   Yb dP   `" 88 88__     88    YbdP         ') ; sleep(.02)
     print('  88""   Y8   8P Yb      88"Yb      o.`Y8b Yb   dP Yb      88 88""     88     8P          ') ; sleep(.02)
-    print('  88     `YbodP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.1{}]'.format(red,end)) ; sleep(.02)
+    print('  88     `YbudP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.1{}]'.format(red,end)) ; sleep(.02)
     print(" [ {}Not_Found_Error{} / {}{}{} ]                                                         ".format(bright_green,end, bright_green,Tools,end, dark_gray,end)) ; sleep(.02)
     print("") ; sleep(.3)
     try:
@@ -2087,4 +2087,27 @@ def info():
 ################################################################################
 if __name__ == '__main__':
     os.system("echo 'file destinato al macello' > Logs/verify_first_boot.txt") # verifica primo avvio
-    logo_menu()
+    print("""
+[ {}Condizioni{} ]:
+    Te che stai leggendo,
+    rubare dati, invadere la Privacy di altre persone, e altro ancora legato
+    all' "hacking" sono reati perseguibili penalmente.
+    Con questo, non mi assumo nessuna responsabilita' per l'uso che ne farai
+    di questo programma.
+    {}Hai un cervello, dunque usalo prima di premere invio!{}
+    """.format(underline + bright_green,end, red,end))
+    print(" Accetti le condizioni?")
+    try:
+        startup_cond = raw_input(" [si/no]:")
+        tokens = startup_cond.split()
+        startup_cond = tokens[0]
+    except IndexError:
+        startup_cond = None
+    except EOFError:
+        sys.exit("\n")
+    except KeyboardInterrupt:
+        sys.exit("\n")
+    if startup_cond == 's' or startup_cond == 'si' or startup_cond == None:
+        logo_menu()
+    else:
+        sys.exit("")
