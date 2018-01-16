@@ -2034,7 +2034,7 @@ def logo_menu():
     print('  88__   88   88 dP   `" 88odP      `Ybo." dP   Yb dP   `" 88 88__     88    YbdP         ') ; sleep(.02)
     print('  88""   Y8   8P Yb      88"Yb      o.`Y8b Yb   dP Yb      88 88""     88     8P          ') ; sleep(.02)
     print('  88     `YbudP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.1{}]'.format(red,end)) ; sleep(.02)
-    print(" [ {}Not_Found_Error{} / {}{}{} ]                                                         ".format(bright_green,end, bright_green,Tools,end, dark_gray,end)) ; sleep(.02)
+    print(" [ {}Not_Found_Error{} / {}{}{} ]                                                         ".format(bright_green,end, bright_green,Tools,end)) ; sleep(.02)
     print("") ; sleep(.3)
     try:
         o = open("Logs/verify_first_boot.txt")
