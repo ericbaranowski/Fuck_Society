@@ -11,6 +11,7 @@ dark_gray = '\033[1;30m'
 bright_green = '\033[1;32m'
 bright_cyan = '\033[1;36m'
 bright_yellow = '\033[1;33m'
+black = "\033[1;30m"
 #
 underline = '\033[4m'
 
@@ -35,21 +36,26 @@ def main():
     print("  dunque usalo!")
     print("")
     print("[>] Verranno installati tutti i Pacchetti e Tools. Continuare?".format(bright_yellow,end))
+    main2()
+def main2():
     try:
-        command_input = raw_input("[si/no]:")
+        command = raw_input("[si/no]:")
+        tokens = command.split()
+        command = tokens[0]
+    except IndexError:
+        command = None
     except EOFError:
         print("\n")
         print("[ {}Attenzione{} ]: Non potrai avviare {}fsociety.py{} senza l'installazione!\n".format(bright_yellow,end, blue,end))
         sys.exit()
-    if command_input == 'si' or command_input == 's' or command_input == '':
+    if command == 'si' or command == 's' or command == None:
         installer()
-    elif command_input == 'no' or command_input == 'n':
+    elif command == 'no' or command == 'n':
         print("")
         sys.exit()
     else:
-        print("\n[ {}Errore{} ]: Scelta non valida.".format(red,end))
-        return main()
-
+        print("[ {}Errore{} ]: Scelta non valida.".format(red,end))
+        return main2()
 def signal_handler(signal, frame):
     print("\n")
     print("[ {}Attenzione{} ]: Non potrai avviare {}fsociety.py{} senza l'installazione!\n".format(bright_yellow,end, blue,end))
@@ -292,17 +298,19 @@ def installer():
 #
 def connection_detector():
     print("[{}Fuck Society Installer{}]\n".format(bright_green, end)) ; sleep(.2)
-    print("[*] Verifico disponibilita' internet...")
-    time.sleep(1)
+    sys.stdout.write("[*] Verifico Connessione Internet ")
+    sys.stdout.flush()
     try:
         requests.get('http://ip.42.pl/raw')
-        print("[{}Connesso{}]".format(bright_green, end))
+        sys.stdout.write("[{} OK {}]\n".format(bright_green, end))
+        sys.stdout.flush()
         time.sleep(.5)
         return main()
     except requests.exceptions.ConnectionError:
-        print("[{}Nessuna connessione{}]".format(red, end))
+        sys.stdout.write(" [{} Fail {}]\n".format(red, end))
+        sys.stdout.flush()
         print("")
-        print("[ {}Attenzione{} ]: Disattiva {}TorGhost{} oppure verifica la tua connessione.\n".format(bright_yellow,end, blue,end))
+        print("[ {}Attenzione{} ]: Disattiva {}TorGhost{} o verifica la tua connessione.\n".format(bright_yellow,end, blue,end))
         sys.exit()
 connection_detector()
 #
