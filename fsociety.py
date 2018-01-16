@@ -1507,7 +1507,7 @@ def help():
     print("    [{}WiFi Attacks{}]:                                                                    ".format(bright_green, end)) ; sleep(.01)
     print("       $ airgeddon / fakeauth / fluxion / netattack / wifite / wpsbreaker / wifiphisher *  ") ; sleep(.01)
     print("       $ wifijammer /                                                                      ") ; sleep(.01)
-    print("    [{}Exploitation (Local + Non-Local){}]:                                                ".format(bright_green, end)) ; sleep(.01)
+    print("    [{}Exploitation{} ({}Local + Non-Local{})]:                                            ".format(bright_green,end, bright_green,end)) ; sleep(.01)
     print("       $ routersploit / wirespy / armitage / jexboss * / setoolkit / msfconsole / l0l      ") ; sleep(.01)
     print("       $ weeman  / shellsploit / eggshell / printerspam / koadic / pentestly / termineter  ") ; sleep(.01)
     print("       $ kayak / pybomber * / cisco-ge *                                                   ") ; sleep(.01)
@@ -2027,7 +2027,7 @@ def logo_menu():
     print('  88F888 88   88  dP""db 88  dP     .dP"Y8  dP"Yb   dP""b8 88 888888 888888 Yb  dP        ') ; sleep(.02)
     print('  88__   88   88 dP   `" 88odP      `Ybo." dP   Yb dP   `" 88 88__     88    YbdP         ') ; sleep(.02)
     print('  88""   Y8   8P Yb      88"Yb      o.`Y8b Yb   dP Yb      88 88""     88     8P          ') ; sleep(.02)
-    print('  88     `YbudP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.1{}]'.format(red,end)) ; sleep(.02)
+    print('  88     `YbudP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.2{}]'.format(red,end)) ; sleep(.02)
     print(" [ {}Not_Found_Error{} / {}{}{} ]                                                         ".format(bright_green,end, bright_green,Tools,end)) ; sleep(.02)
     print("") ; sleep(.3)
     try:
