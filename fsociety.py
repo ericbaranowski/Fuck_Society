@@ -2038,15 +2038,15 @@ def logo_menu():
 def logo_print():
     try:
         print("/ Public IP : {}".format(blue + requests.get('http://ip.42.pl/raw').text + end))
-        print("/ Local IP  : {}".format(blue + socket.gethostbyname(socket.gethostname()) + end))
+        print("/ Local IP  : {}".format(blue +[l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0] + end))
         print("/ Interface : {}".format(blue + netifaces.gateways()['default'][netifaces.AF_INET][1] + end))
     except (socket.error,requests.exceptions.ConnectionError,KeyError):
         if socket.error:
-            print("---] Local IP   :  " + blue + "-" + end)
+            print("/ Local IP  : " + blue + "-" + end)
         if requests.exceptions.ConnectionError:
-            print("---] Public IP  :  " + blue + "-  " + end + "[ {}Attenzione{} ]: Disattiva {}TorGhost{} o verifica la tua connessione.".format(bright_yellow,end, blue,end))
+            print("/ Public IP : " + blue + "-  " + end + "[ {}Attenzione{} ]: Disattiva {}TorGhost{} o verifica la tua connessione.".format(bright_yellow,end, blue,end))
         if KeyError:
-            print("---] Interface  :  " + blue + "-" + end)
+            print("/ Interface : " + blue + "-" + end)
     print("/ System    : {} {}".format(blue + platform.linux_distribution()[0], platform.system() + end))
     print("") ; sleep(.3)
     return menu()
