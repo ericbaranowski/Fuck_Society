@@ -3,7 +3,7 @@ Changelog:
 1.0.2:
 - Nuovo Tool Aggiunto
 - Miglioramenti Generali
-- Correzioni di piccoli Bug
+- Correzioni di Piccoli Bug
 
 1.0.1
 
