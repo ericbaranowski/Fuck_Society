@@ -24,7 +24,7 @@ il/i seguente/i comando/i:
 
 $ python fsociety.py
 oppure
-$ fsociety oppure fsociety.py
+$ fsociety
 
 Nel Programma:
 ==============
