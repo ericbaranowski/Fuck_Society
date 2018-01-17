@@ -53,6 +53,8 @@ Email:
 > notfound00@gmail.com
 
 
-| Github: https://www.github.com/NotFoundError/FuckSociety
-| Autore: Not_Found_Error 
-| Lingua: Italiano 
+Github: https://www.github.com/NotFoundError/FuckSociety
+
+Autore: Not_Found_Error 
+
+Lingua: Italiano 
