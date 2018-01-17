@@ -4,7 +4,9 @@ Changelog:
 - Nuovo Tool Aggiunto
 - Miglioramenti Generali
 - Correzioni di piccoli Bug
+
 1.0.1
+
 1.0.0
 
 Installazione:
