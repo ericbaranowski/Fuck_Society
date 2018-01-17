@@ -29,7 +29,7 @@ bright_cyan = '\033[1;36m'
 bright_yellow = '\033[1;33m'
 #
 underline = '\033[4m'
-Tools = "125 Tools"
+Tools = "126 Tools"
 
 if sys.version_info.major >= 2.7:
     print("\n[ {}Attenzione{} ]: Questa versione non e' supportata dal tuo sistema.".format(bright_yellow, end))
@@ -97,7 +97,7 @@ def menu():
     "geoip", "whois", "maltego", "sn1per", "red_hawk", "ktfconsole", "operativef", "dmitry", "inspy","credmap","theharvester",
     # WebApp
     "xerxes", "ufonet", "zambie", "goldeneye","recon-ng","sslscan","ipmipwn","xsstracer","fbht","pybomber","whatweb","commix","onioff","joomscan",
-    "sqlmap","scan","inj", "sqliv","dork","web","jaidam","sshscan","pentmenu","a2sv","crips","vbscan","torshammer","siege","brutesploit",
+    "sqlmap","scan","inj", "sqliv","dork","web","jaidam","sshscan","pentmenu","a2sv","crips","vbscan","torshammer","siege","brutesploit","medusa",
     "cpscan","dtect", "dracnmap", "sechub", "arachni", "wpscan", "zaproxy", "zenmap", "uniscan", "droopescan", "striker","instarecon","dsxs",
     "hydra","ftp", "xhydra", "tulpar", "bingoo","xattacker", "knockmail", "osrframework","blazy", "xsssniper","sublist3r","urlextractor",
     # WiFi
@@ -295,19 +295,19 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
             os.system("ifconfig {}".format(option))
             return menu()
         try:
-            print("---] Interface    :  " + blue + netifaces.gateways()['default'][netifaces.AF_INET][1] + end)
+            print("/ Interface    :  " + blue + netifaces.gateways()['default'][netifaces.AF_INET][1] + end)
         except KeyError:
-            print("---] Interface    :  " + blue + "Nessuna Interfaccia Connessa" + end)
+            print("/ Interface    :  " + blue + "Nessuna Interfaccia Connessa" + end)
         try:
-            print("---] Local IP     :  " + blue + [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0] + end)
+            print("/ Local IP     :  " + blue + [l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0] + end)
         except socket.error:
-            print("---] Local IP     :  " + blue + "Nessuna Connessione" + end)
-        print("---] Mac Address  :  " + blue + ':'.join(re.findall('..', '%012x' % uuid.getnode())) + end)
-        print("---] Gateway      :  " + blue + str(get_gateway()) + end)
+            print("/ Local IP     :  " + blue + "Nessuna Connessione" + end)
+        print("/ Mac Address  :  " + blue + ':'.join(re.findall('..', '%012x' % uuid.getnode())) + end)
+        print("/ Gateway      :  " + blue + str(get_gateway()) + end)
         try:
-            print("---] Public IP    :  " + blue + requests.get('http://ip.42.pl/raw').text + end)
+            print("/ Public IP    :  " + blue + requests.get('http://ip.42.pl/raw').text + end)
         except requests.exceptions.ConnectionError:
-            print("---] Public IP    :  " + blue + "Nessuna Connessione" + end)
+            print("/ Public IP    :  " + blue + "Nessuna Connessione" + end)
         host = "8.8.8.8"
         port = 53
         timeout = 3
@@ -317,7 +317,7 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
             pass
         except Exception:
             print("[ {}Attenzione{} ]: Nessuna connessione a internet.".format(bright_yellow,end))
-            print("[ {}Attenzione{} ]: Disattiva TorGhost o verifica la tua connessione.".format(bright_yellow,end))
+            print("[ {}Attenzione{} ]: Disattiva {}TorGhost{} o verifica la tua connessione.".format(bright_yellow,end, blue,end))
         return menu()
     elif command == 'ping':
         if option:
@@ -596,6 +596,46 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
         else:
             print("[ {}Errore{} ]: {}Cheetah{} richiede un indirizzo. Digita {}cheetah -h{} per ulteriori comandi.".format(red,end, blue,end, blue,end))
             return menu()
+    elif command == 'medusa':
+        modules_list = ["afp","cvs","ftp","http","imap","mssql","mysql","nntp","pop3","postgres","rdp","rexec","rsh","smbnt","ssh","svn","telnet","vmauthd","vnc","wrapper"]
+        if option:
+            if option == '-h':
+                print("")
+                print("[ {}Comandi Medusa{} ]:".format(bright_green,end))
+                print(" Come usarlo: $ medusa <host> <user> <pswdfile.txt> <module> [threads n. (facoltativo)]")
+                print("")
+                print("[ {}Moduli{} ]:".format(bright_green,end))
+                print("/ afp / cvs / ftp / http / imap / mssql / mysql / nntp / pop3 / postgres / rdp / rexec")
+                print("/ rsh / smbnt / ssh / svn / telnet / vmauthd / vnc / wrapper")
+                print("")
+                return menu()
+            elif option:
+                if argument:
+                    if argument2: # psw file
+                        if os.path.exists(argument2) == False:
+                            print("[ {}Errore{} ]: Wordlist {}{}{} non trovata.".format(red,end, blue,argument2,end))
+                            return menu()
+                        if argument3 in modules_list:
+                            if argument4:
+                                os.system("xterm -T 'Medusa' -e 'medusa -h {} -u {} -P {} -M {} -t {};echo '';echo Press ENTER To Close;read'".format(option, argument, argument2, argument3,argument4))
+                                return menu()
+                            os.system("xterm -T 'Medusa' -e 'medusa -h {} -u {} -P {} -M {};echo '';echo Press ENTER To Close;read'".format(option, argument, argument2, argument3))
+                            return menu()
+                        else:
+                            print("[ {}Errore{} ]: Modulo non valido o mancante. Digita {}medusa -h{} per i comandi.".format(red,end, blue,end))
+                            return menu()
+                    else:
+                        print("[ {}Errore{} ]: Wordlist e Modulo mancanti. Digita {}medusa -h{} per i comandi.".format(red,end, blue,end))
+                        return menu()
+                else:
+                    print("[ {}Errore{} ]: Argomenti mancanti. Digita {}medusa -h{} per i comandi.".format(red,end, blue,end))
+                    return menu()
+            else:
+                print("[ {}Errore{} ]: Argomenti mancanti. Digita {}medusa -h{} per i comandi.".format(red,end, blue,end))
+                return menu()
+        else:
+            print("[ {}Errore{} ]: {}Medusa{} richiede una serie di argomenti validi. Digita {}medusa -h{} per i comandi.".format(red,end, blue,end, blue,end))
+            return menu()
 
     # Sistema
     elif command == 'shutdown':
@@ -828,14 +868,14 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
         logo_menu()
     elif command == 'goldeneye':
         if option:
-            if 'http' in option or 'https' in option:
-                os.system("xterm -T 'Goldeneye' -e 'goldeneye {} -w 25 -s 1000 -d'".format(option))
+            if 'http' not in option:
+                os.system("gnome-terminal -- goldeneye http://{} -m random".format(option))
                 return menu()
-            else:
-                print("[ {}Errore{} ]: {}Goldeneye{} richiede un indirizzo con {}http{} o {}https{}.".format(red,end, blue,end, blue,end, blue,end))
+            if ('http' or 'https') in option:
+                os.system("gnome-terminal -- goldeneye {} -m random".format(option))
                 return menu()
         else:
-            print("[ {}Errore{} ]: {}Goldeneye{} richiede un indirizzo con {}http{} o {}https{}.".format(red,end, blue,end, blue,end, blue,end))
+            print("[ {}Errore{} ]: {}Goldeneye{} richiede un indirizzo.".format(red,end, blue,end))
             return menu()
     elif command == 'torshammer':
         if option:
@@ -940,10 +980,10 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
             print("[ {}Errore{} ]: {}Wpscan{} richiede un indirizzo.".format(red,end, blue,end))
             return menu()
     elif command == 'zaproxy':
-        os.system("xterm -T 'Zaproxy Logs' -e 'zaproxy'")
+        os.system("gnome-terminal -- zaproxy")
         return menu()
     elif command == 'zenmap':
-        os.system("xterm -T 'Zenmap Logs' -e 'zenmap'")
+        os.system("gnome-terminal -- zenmap")
         return menu()
     elif command == 'uniscan':
         if option:
@@ -1229,10 +1269,10 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
         os.system("cd Tools/morpheus/ && ./morpheus.sh")
         logo_menu()
     elif command == 'wireshark':
-        os.system("xterm -T 'Wireshark Logs' -e 'wireshark'")
+        os.system("gnome-terminal -- wireshark")
         return menu()
     elif command == 'ettercap':
-        os.system("xterm -T 'Ettercap Logs' -e 'ettercap -G'")
+        os.system("gnome-terminal -- ettercap -G")
         return menu()
     elif command == 'mitmf':
         os.system("gnome-terminal -- mitmf -i {} --spoof --arp --dns --hsts --gateway {}".format(netifaces.gateways()['default'][netifaces.AF_INET][1], str(get_gateway())))
@@ -1516,6 +1556,7 @@ def help():
     print("           $ zambie / xerxes * / ufonet / goldeneye * / torshammer *                       ") ; sleep(.01)
     print("        [{}BruteForce{}]:                                                                  ".format(bright_green, end)) ; sleep(.01)
     print("           $ blazy / hydra ftp * / xhydra / fbht / brutesploit / patator * / cheetah *     ") ; sleep(.01)
+    print("           $ medusa *                                                                      ") ; sleep(.01)
     print("        [{}SQLi{}]:                                                                        ".format(bright_green, end)) ; sleep(.01)
     print("           $ sqlmap [ scan * / inj ] / sqliv [ web / dork ] * / commix *                   ") ; sleep(.01)
     print("        [{}Site Cloner{}]:                                                                 ".format(bright_green, end)) ; sleep(.01)
@@ -2027,7 +2068,7 @@ def logo_menu():
     print('  88F888 88   88  dP""db 88  dP     .dP"Y8  dP"Yb   dP""b8 88 888888 888888 Yb  dP        ') ; sleep(.02)
     print('  88__   88   88 dP   `" 88odP      `Ybo." dP   Yb dP   `" 88 88__     88    YbdP         ') ; sleep(.02)
     print('  88""   Y8   8P Yb      88"Yb      o.`Y8b Yb   dP Yb      88 88""     88     8P          ') ; sleep(.02)
-    print('  88     `YbudP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.1{}]'.format(red,end)) ; sleep(.02)
+    print('  88     `YbudP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}v1.0.2{}]'.format(red,end)) ; sleep(.02)
     print(" [ {}Not_Found_Error{} / {}{}{} ]                                                         ".format(bright_green,end, bright_green,Tools,end)) ; sleep(.02)
     print("") ; sleep(.3)
     try:
@@ -2079,8 +2120,7 @@ def info():
     print("") ; sleep(.02)
     return menu()
 ################################################################################
-if __name__ == '__main__':
-    os.system("echo 'file destinato al macello' > Logs/verify_first_boot.txt") # verifica primo avvio
+def firststartup():
     print("""
 [ {}Condizioni{} ]:
     Te che stai leggendo,
@@ -2102,6 +2142,48 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         sys.exit("\n")
     if startup_cond == 's' or startup_cond == 'si' or startup_cond == None:
+        os.system("echo 'file destinato al macello' > Logs/verify_first_boot.txt") # verifica primo avvio
         logo_menu()
     else:
         sys.exit("")
+
+def initparser():
+    args_list = ["-h","--help","-ns","--nostartup","-fy","--fuckyou"]
+    parser = argparse.ArgumentParser(conflict_handler="resolve",add_help=False)
+    parser.add_argument("-h","--help",action="store_true",required=False)
+    parser.add_argument("-ns","--nostartup",action="store_true",required=False)
+    parser.add_argument("-fy","--fuckyou",action="store_true",required=False)
+    args = parser.parse_args()
+    if args.help:
+        print("""
+[ {}Fuck Society{} ]-[ Autore: {}Not_Found_Error{} ]
+/ Hai davvero talento nello smanettare :D
+--------------------------------------------------------------------------------
+[ {}Condizioni{} ]:
+    Te che stai leggendo,
+    rubare dati, invadere la Privacy di altre persone, e altro ancora legato
+    all' "hacking" sono reati perseguibili penalmente.
+    Con questo, non mi assumo nessuna responsabilita' per l'uso che ne farai
+    di questo programma.
+    {}Hai un cervello, dunque usalo prima di premere invio!{}
+--------------------------------------------------------------------------------
+Come uarlo:
+$ python fsociety.py [ -h ] [ -ns ] [ -fy ]
+
+Comandi:
+    -h  --help                Mostra questa schermata ed esci
+    -ns --nostartup           Bypassa il caricamento iniziale
+    -fy --fuckyou             Bypassa ogni tipo di blocco (comando instabile)
+                              (verrai portato al menu)
+""".format(bright_green,end, bright_green,end, underline + bright_green,end, red,end))
+        sys.exit()
+    if args.nostartup:
+        return logo_menu()
+    if args.fuckyou:
+        return menu()
+    if args:
+        return firststartup()
+
+if __name__ == "__main__":
+    sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=24, cols=80))
+    initparser()
