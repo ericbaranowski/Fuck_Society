@@ -23,7 +23,9 @@ Dopo aver eseguito l'installazione con l'apposito file, avvia fsociety.py con
 il/i seguente/i comando/i:
 
 $ python fsociety.py
+
 oppure
+
 $ fsociety
 
 Nel Programma:
