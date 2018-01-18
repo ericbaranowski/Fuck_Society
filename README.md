@@ -1,7 +1,7 @@
 Changelog:
 ==========
 1.0.2:
-- Nuovo Tool Aggiunto
+- Nuovi Tools Aggiunti
 - Miglioramenti Generali
 - Correzioni di Piccoli Bug
 
