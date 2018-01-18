@@ -954,6 +954,7 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
                 print("[ {}Errore{} ]: Inserisci un indirizzo valido.".format(red,end, blue,end))
                 return menu()
             os.system("cd Tools/Breacher/ && python breacher.py -u {}".format(option))
+            print("")
             return menu()
         else:
             print("[ {}Errore{} ]: {}Breacher{} richiede un indirizzo.".format(red,end, blue,end))
