@@ -191,6 +191,7 @@ def installer():
     os.system("xterm -T 'Setup' -e 'git clone https://github.com/thehappydinoa/iOSRestrictionBruteForce.git'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'git clone https://github.com/sunnyelf/cheetah.git'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'git clone https://github.com/stamparm/DSXS.git'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'git clone https://github.com/UltimateHackers/Breacher.git'") ; sleep(.1)
     sys.stdout.write(21 * " " + "[ {}DONE{} ]\n".format(bright_green,end))
     sys.stdout.flush()
     #
@@ -198,7 +199,7 @@ def installer():
     sys.stdout.write(" Sposto Tools".format(bright_green,end))
     sys.stdout.flush()
     os.system("xterm -T 'Setup' -e 'mv torshammer/ fbht/ Crips/ Debinject/ simple-ducky/ SSHScan/ AndroidPINCrack/ Evil-Droid/ TheFatRat/ torghost/ KatanaFramework/ routersploit/ airgeddon/ wirespy/ Tools/'") ; sleep(.1)
-    os.system("xterm -T 'Setup' -e 'mv cheetah/ onioff/ URLextractor/ sb0x-project/ a2sv/ XSSTracer/ Kautilya/ 2sv/ Jaidam/ weeman/ jexboss/ D-TECT/ OverThruster/ BinGoo/ hakkuframework/ BeeLogger/ CHAOS/ EggShell/ xerxes/ Tools/'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'mv Breacher/ cheetah/ onioff/ URLextractor/ sb0x-project/ a2sv/ XSSTracer/ Kautilya/ 2sv/ Jaidam/ weeman/ jexboss/ D-TECT/ OverThruster/ BinGoo/ hakkuframework/ BeeLogger/ CHAOS/ EggShell/ xerxes/ Tools/'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'mv DSXS/ ATSCAN/ car-hacking-tools/ l0l/ pentestly/ koadic/ pentmenu/ PenBox/ tulpar/ secHub/ operative-framework/ HT-WPS-Breaker/ FakeAuth/ Dracnmap/ Sn1per/ Tools/'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'mv iOSRestrictionBruteForce/ instarecon/ wifijammer/ cisco-global-exploiter/ pybomber/ vbscan/ IPMIPWN/ mitmAP/ Striker/ cpscan/ zirikatu/ KnockMail/ netattack2/ zambie/ fluxion/ ufonet/ morpheus/ RED_HAWK/ websploit/ Tools/'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'mv BruteSploit/ zarp/ discover/ extract-hashes/ astroid/ xsssniper/ Brutal/ Blazy/ Trity/ credmap/ XAttacker/ sAINT/  ARCANUS/ ezsploit/ sqliv/ shellsploit-framework/ Tools/'") ; sleep(.1)

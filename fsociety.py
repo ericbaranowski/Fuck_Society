@@ -29,7 +29,7 @@ bright_cyan = '\033[1;36m'
 bright_yellow = '\033[1;33m'
 #
 underline = '\033[4m'
-Tools = "126 Tools"
+Tools = "127 Tools"
 
 if sys.version_info.major >= 2.7:
     print("\n[ {}Attenzione{} ]: Questa versione non e' supportata dal tuo sistema.".format(bright_yellow, end))
@@ -99,7 +99,7 @@ def menu():
     "xerxes", "ufonet", "zambie", "goldeneye","recon-ng","sslscan","ipmipwn","xsstracer","fbht","pybomber","whatweb","commix","onioff","joomscan",
     "sqlmap","scan","inj", "sqliv","dork","web","jaidam","sshscan","pentmenu","a2sv","crips","vbscan","torshammer","siege","brutesploit","medusa",
     "cpscan","dtect", "dracnmap", "sechub", "arachni", "wpscan", "zaproxy", "zenmap", "uniscan", "droopescan", "striker","instarecon","dsxs",
-    "hydra","ftp", "xhydra", "tulpar", "bingoo","xattacker", "knockmail", "osrframework","blazy", "xsssniper","sublist3r","urlextractor",
+    "hydra","ftp", "xhydra", "tulpar", "bingoo","xattacker", "knockmail", "osrframework","blazy", "xsssniper","sublist3r","urlextractor","breacher",
     # WiFi
     "airgeddon", "wifite", "fakeauth", "fluxion", "wifiphisher",
     "routersploit", "wirespy", "wpsbreaker", "netattack",
@@ -656,7 +656,7 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
         os.system("gnome-terminal -- ftp")
         return menu()
     elif command == 'unbug':
-        os.system("xterm -T 'unbug' -e 'airmon-ng check kill && airodump-ng stop wlan0mon && airmon-ng stop eth0mon && ifconfig wlan0 down && ifconfig eth0 down && macchanger -r wlan0 && macchanger -r eth0 && ifconfig wlan0 up && ifconfig eth0 up && service network-manager restart'")
+        os.system("xterm -T 'unbug' -e 'airmon-ng check kill && airmon-ng stop wlan0mon && airmon-ng stop eth0mon && ifconfig wlan0 down && ifconfig eth0 down && macchanger -r wlan0 && macchanger -r eth0 && ifconfig wlan0 up && ifconfig eth0 up && service network-manager restart'")
         os.system('echo "nameserver 8.8.8.8" > /etc/resolv.conf')
         print("[ {}OK{} ] Unbug completato.".format(bright_green,end))
         return menu()
@@ -942,12 +942,22 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
     elif command == 'cpscan':
         if option:
             if '.' not in option:
-                print("[ {}Errore{} ]: Inserisci un url valido.".format(red,end, blue,end))
+                print("[ {}Errore{} ]: Inserisci un indirizzo valido.".format(red,end, blue,end))
                 return menu()
             os.system("xterm -T 'Cpscan' -e 'cd Tools/cpscan/ && python cpscan.py -t {} -v'".format(option))
         else:
             print("[ {}Errore{} ]: {}Cpscan{} richiede un indirizzo.".format(red,end, blue,end))
         return menu()
+    elif command == 'breacher':
+        if option:
+            if '.' not in option:
+                print("[ {}Errore{} ]: Inserisci un indirizzo valido.".format(red,end, blue,end))
+                return menu()
+            os.system("cd Tools/Breacher/ && python breacher.py -u {}".format(option))
+            return menu()
+        else:
+            print("[ {}Errore{} ]: {}Breacher{} richiede un indirizzo.".format(red,end, blue,end))
+            return menu()
     elif command == 'dtect':
         os.system("gnome-terminal -- python " + os.getcwd() + "/Tools/D-TECT/d-tect.py")
         return menu()
@@ -1523,7 +1533,7 @@ def help():
     print("       $ nmap [ local / dlocal / web * / os * ] / netdiscover                              ") ; sleep(.01)
     print("    [{}Web{}]:                                                                             ".format(bright_green, end)) ; sleep(.01)
     print("        [{}Admin CP{}]:                                                                    ".format(bright_green, end)) ; sleep(.01)
-    print("           $ cpscan *                                                                      ") ; sleep(.01)
+    print("           $ cpscan * / breacher *                                                         ") ; sleep(.01)
     print("        [{}Scanners{} ({}Vulnerability + Others{})]:                                       ".format(bright_green, end, bright_green,end)) ; sleep(.01)
     print("           $ jaidam / uniscan * / droopescan / xsssniper * / vbscan * / dracnmap / zaproxy ") ; sleep(.01)
     print("           $ a2sv * / xattacker / sslscan * / wpscan * / xsstracer / arachni * / sshscan * ") ; sleep(.01)
