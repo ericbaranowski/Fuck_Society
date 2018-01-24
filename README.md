@@ -11,16 +11,18 @@ Changelog:
 
 Installazione:
 ==============
-Il procedimento d'installazione può durare anche o oltre i 30 minuti, 
-in base al vostro computer e alla vostra rete.
-Per eseguire l'installazione ed avere tutto l'occorrente, digita su un terminale:
+L'installazione potrebbe durare oltre i 30 minuti a dipendenza dal computer e dalla rete. 
+Per eseguire l'installazione ed avere tutto l'occorrente, digita su un terminale root:
+
+$ git clone https://github.com/NotFoundError/FuckSociety.git/
+
+$ cd FuckSociety/
 
 $ python installer.py
 
 Avvio:
 ======
-Dopo aver eseguito l'installazione con l'apposito file, avvia fsociety.py con 
-il/i seguente/i comando/i:
+Dopo aver eseguito l'installazione con l'apposito file, avvia fsociety.py con:
 
 $ python fsociety.py
 
@@ -47,14 +49,8 @@ furto di dati, ecc...
 Pensa prima di premere invio!
 
 Per qualsiasi tipo di errore all'interno del programma o se hai suggerimenti 
-per il miglioramento, sei pregato di contattarmi tramite indirizzo email
+per come migliorarlo, contattami tramite indirizzo email
 o tramite Github.
 Email:
 > notfounderror00@gmail.com
 
-
-Github: https://www.github.com/NotFoundError/FuckSociety
-
-Autore: Not_Found_Error 
-
-Lingua: Italiano 
