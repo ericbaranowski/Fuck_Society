@@ -50,7 +50,7 @@ try:
     import netifaces,paramiko
 except ImportError:
     print("")
-    print("/ {} Attenzione {}: Esegui {}installer.py{} per avviare il programma.".format(bright_yellow,end,red, end))
+    print("/ {}Attenzione{}: Esegui {}installer.py{} per avviare il programma.".format(bright_yellow,end,red, end))
     print("/ Libreria {}netifaces{} mancante.".format(blue,end))
     print("")
     sys.exit()
@@ -2355,6 +2355,13 @@ $ python fsociety.py [ -h ] [ -v ] [ -s ] [ -ns ] [ -fy ]
         os.system("echo 'file destinato al macello' > Logs/verify_first_boot.txt") # verifica primo avvio
         logo_menu()
     if args.nostartup:
+        try:
+            installer_done = open("Tools/Complete.txt")
+        except IOError:
+            print("")
+            print("/ {}Attenzione{}: Esegui {}installer.py{} per usare il programma.".format(bright_yellow,end,red, end))
+            print("")
+            sys.exit()
         return logo_menu()
     if args.fuckyou:
         return menu()
