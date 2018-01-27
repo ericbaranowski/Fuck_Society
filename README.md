@@ -13,23 +13,21 @@ Installazione:
 ==============
 L'installazione potrebbe durare oltre i 30 minuti a dipendenza dal computer e dalla rete. 
 Per eseguire l'installazione ed avere tutto l'occorrente, digita su un terminale root:
-
+'''
 $ git clone https://github.com/NotFoundError/FuckSociety.git/
-
 $ cd FuckSociety/
-
 $ python installer.py
-
+'''
 Avvio:
 ======
 Dopo aver eseguito l'installazione con l'apposito file, avvia fsociety.py con:
-
+'''
 $ python fsociety.py
-
+'''
 oppure
-
+'''
 $ fsociety
-
+'''
 Nel Programma:
 ==============
 All'avvio di fsociety bisognerà attendere quei pochi secondi per completare l'avvio 
