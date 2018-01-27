@@ -30,7 +30,7 @@ bright_yellow = '\033[1;33m'
 #
 underline = '\033[4m'
 Tools = "168 Tools"
-versione = "v1.1.0a"
+versione = "v1.1.0"
 
 if sys.version_info.major >= 2.7:
     print("\n/ {}Attenzione{}: Questa versione non e' supportata dal tuo sistema.".format(bright_yellow, end))
