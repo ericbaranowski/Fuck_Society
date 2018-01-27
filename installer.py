@@ -20,7 +20,7 @@ sys.stdout.write("\x1b]2;Fuck Society Installer\x07")
 
 euid = os.geteuid()
 if euid != 0:
-    print("[ {}Attenzione{} ]: Per proseguire sono necessari i permessi di root.".format(bright_yellow,end))
+    print("/ {}Attenzione{}: Per proseguire sono necessari i permessi di root.".format(bright_yellow,end))
     time.sleep(.5)
     args = ['sudo', sys.executable] + sys.argv + [os.environ]
     # the next line replaces the currently-running process with the sudo
@@ -28,14 +28,14 @@ if euid != 0:
 
 def main():
     print("")
-    print("[ {}Attenzione{} ]:".format(bright_yellow,end))
+    print("/ {}Attenzione{}:".format(bright_yellow,end))
     print("  Una volta eseguita l'installazione ti sconsiglio altamente di rinominare o ")
     print("  spostare la cartella di {}fsociety.py{}.".format(blue,end))
     print("  Se proprio devi, fallo prima.")
     print("  Non sono responsabile per l'uso che ne farai, sei dotato di un cervello")
     print("  dunque usalo!")
     print("")
-    print("[>] Verranno installati tutti i Pacchetti e Tools. Continuare?".format(bright_yellow,end))
+    print("/ Verranno installati tutti i Pacchetti e Tools. Continuare?".format(bright_yellow,end))
     main2()
 def main2():
     try:
@@ -46,7 +46,7 @@ def main2():
         command = None
     except EOFError:
         print("\n")
-        print("[ {}Attenzione{} ]: Non potrai avviare {}fsociety.py{} senza l'installazione!\n".format(bright_yellow,end, blue,end))
+        print("/ {}Attenzione{}: Non potrai avviare {}fsociety.py{} senza l'installazione!\n".format(bright_yellow,end, blue,end))
         sys.exit()
     if command == 'si' or command == 's' or command == None:
         installer()
@@ -54,17 +54,17 @@ def main2():
         print("")
         sys.exit()
     else:
-        print("[ {}Errore{} ]: Scelta non valida.".format(red,end))
+        print("/ {}Errore{}: Scelta non valida.".format(red,end))
         return main2()
 def signal_handler(signal, frame):
     print("\n")
-    print("[ {}Attenzione{} ]: Non potrai avviare {}fsociety.py{} senza l'installazione!\n".format(bright_yellow,end, blue,end))
+    print("/ {}Attenzione{}: Non potrai avviare {}fsociety.py{} senza l'installazione!\n".format(bright_yellow,end, blue,end))
     sys.exit()
 signal.signal(signal.SIGINT, signal_handler)
 
 def installer():
     print("")
-    print("[*] Avvio...")
+    print("/ Avvio...")
     time.sleep(2)
     os.system("reset")
     print("")
@@ -91,13 +91,13 @@ def installer():
     sys.stdout.write(" Installo Librerie e Pacchetti".format(bright_green,end))
     sys.stdout.flush()
     time.sleep(.1)
-    os.system("xterm -T 'Installing Libraries...' -e 'pip install passlib flask wtforms pysocks pyopenssl netlib twisted pcapy dnspython urllib3 ipaddress pythem bs4 droopescan beautifulsoup4 sslyze requests netifaces capstone pefile colorama pylzma nmap jsonrpclib PyPDF2 olefile slowaes'") ; sleep(.1)
+    os.system("xterm -T 'Installing Libraries...' -e 'pip install service_identity pybluez passlib flask wtforms pysocks pyopenssl netlib twisted pcapy dnspython urllib3 ipaddress pythem bs4 droopescan beautifulsoup4 sslyze requests netifaces capstone pefile colorama pylzma nmap jsonrpclib PyPDF2 olefile slowaes'") ; sleep(.1)
     os.system("xterm -T 'Installing Libraries...' -e 'python3 -m pip install mitmproxy'") ; sleep(.1)
-    os.system("xterm -T 'Installing Packages...' -e 'apt install siege whatweb termineter ipmitool recon-ng theharvester python-pip python3-pip dnsmasq wireshark u3-pwn osrframework jsql uniscan httrack arachni nmap python-nmap python-nfqueue wifiphisher gcc set golang upx-ucl wifite -y'") ; sleep(.1)
-    os.system("xterm -T 'Installing Packages...' -e 'apt install patator tor curl libxml2-utils commix sslscan libpcap-dev hostapd mitmf zaproxy hydra t50 lynx libssl-doc libssl-dev libdata-random-perl libfile-modified-perl libgd-perl libhook-lexwrap-perl -y'") ; sleep(.1)
-    os.system("xterm -T 'Installing Packages...' -e 'apt install medusa joomscan libxslt1-dev screen sublist3r whois armitage zenmap libhtml-display-perl libhtml-tableextract-perl libhtml-tokeparser-simple-perl libterm-shell-perl libtext-autoformat-perl -y'") ; sleep(.1)
-    os.system("xterm -T 'Installing Packages...' -e 'apt install bc dnsutils libjpeg62-turbo-dev wondershaper libtext-reform-perl maven default-jdk default-jre openjdk-8-jdk openjdk-8-jre zlib1g-dev libncurses5-dev lib32z1 lib32ncurses5 libwww-mechanize-formfiller-perl php-xml php-curl maltegoce python3 figlet bettercap -y'") ; sleep(.1)
-    os.system("xterm -T 'Installing Packages...' -e 'apt install libxml2-dev libffi-dev driftnet inspy goldeneye python-netifaces php-cgi lighttpd python-pycurl python-geoip python-whois python-crypto python-requests -y'") ; sleep(.1)
+    os.system("xterm -T 'Installing Packages...' -e 'apt install nikto jsql amap siege whatweb termineter ipmitool recon-ng theharvester python-pip python3-pip dnsmasq wireshark u3-pwn osrframework jsql uniscan httrack arachni nmap python-nmap python-nfqueue wifiphisher gcc set golang upx-ucl wifite -y'") ; sleep(.1)
+    os.system("xterm -T 'Installing Packages...' -e 'apt install powerfuzzer sslyze sslstrip wol-e miranda cdpsnarf automater patator tor curl libxml2-utils commix sslscan libpcap-dev hostapd mitmf zaproxy hydra t50 lynx libssl-doc libssl-dev libdata-random-perl libfile-modified-perl libgd-perl libhook-lexwrap-perl -y'") ; sleep(.1)
+    os.system("xterm -T 'Installing Packages...' -e 'apt install parsero cisco-torch dnsenum cookie-cadger medusa joomscan libxslt1-dev screen sublist3r whois armitage zenmap libhtml-display-perl libhtml-tableextract-perl libhtml-tokeparser-simple-perl libterm-shell-perl libtext-autoformat-perl -y'") ; sleep(.1)
+    os.system("xterm -T 'Installing Packages...' -e 'apt install cutycapt smtp-user-enum p0f yersinia intrace hping3 dotdotpwn dnsmap bc dnsutils libjpeg62-turbo-dev wondershaper libtext-reform-perl maven default-jdk default-jre openjdk-8-jdk openjdk-8-jre zlib1g-dev libncurses5-dev lib32z1 lib32ncurses5 libwww-mechanize-formfiller-perl php-xml php-curl maltegoce python3 figlet bettercap -y'") ; sleep(.1)
+    os.system("xterm -T 'Installing Packages...' -e 'apt install thc-ssl-dos ua-tester vega dirb dirbuster fimap blindelephant bluelog libxml2-dev libffi-dev driftnet inspy goldeneye python-netifaces php-cgi lighttpd python-pycurl python-geoip python-whois python-crypto python-requests -y'") ; sleep(.1)
     os.system("xterm -T 'Installing Packages...' -e 'easy_install wtforms scapy mechanize lxml html5lib validate_email pyDNS stem netifaces && sudo cpan JSON'") ; sleep(.1)
     os.system("xterm -T 'Installing Packages...' -e 'easy_install3 lxml'") ; sleep(.2)
     sys.stdout.write(5 * " " + "[ {}DONE{} ]\n".format(bright_green,end))
@@ -192,6 +192,11 @@ def installer():
     os.system("xterm -T 'Setup' -e 'git clone https://github.com/sunnyelf/cheetah.git'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'git clone https://github.com/stamparm/DSXS.git'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'git clone https://github.com/UltimateHackers/Breacher.git'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'wget https://downloads.sourceforge.net/project/inguma/inguma/Inguma%200.1.0%20%28R1%29/inguma-0.1.1.tar.gz'")
+    os.system("xterm -T 'Setup' -e 'git clone https://github.com/ihebski/angryFuzzer.git'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'git clone https://github.com/codingo/NoSQLMap.git'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'cd Tools/ && git clone https://github.com/websploit/websploit.git'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'git clone https://github.com/kamorin/DHCPig.git'") ; sleep(.1)
     sys.stdout.write(21 * " " + "[ {}DONE{} ]\n".format(bright_green,end))
     sys.stdout.flush()
     #
@@ -199,8 +204,8 @@ def installer():
     sys.stdout.write(" Sposto Tools".format(bright_green,end))
     sys.stdout.flush()
     os.system("xterm -T 'Setup' -e 'mv torshammer/ fbht/ Crips/ Debinject/ simple-ducky/ SSHScan/ AndroidPINCrack/ Evil-Droid/ TheFatRat/ torghost/ KatanaFramework/ routersploit/ airgeddon/ wirespy/ Tools/'") ; sleep(.1)
-    os.system("xterm -T 'Setup' -e 'mv Breacher/ cheetah/ onioff/ URLextractor/ sb0x-project/ a2sv/ XSSTracer/ Kautilya/ 2sv/ Jaidam/ weeman/ jexboss/ D-TECT/ OverThruster/ BinGoo/ hakkuframework/ BeeLogger/ CHAOS/ EggShell/ xerxes/ Tools/'") ; sleep(.1)
-    os.system("xterm -T 'Setup' -e 'mv DSXS/ ATSCAN/ car-hacking-tools/ l0l/ pentestly/ koadic/ pentmenu/ PenBox/ tulpar/ secHub/ operative-framework/ HT-WPS-Breaker/ FakeAuth/ Dracnmap/ Sn1per/ Tools/'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'mv websploit/ Breacher/ cheetah/ onioff/ URLextractor/ sb0x-project/ a2sv/ XSSTracer/ Kautilya/ 2sv/ Jaidam/ weeman/ jexboss/ D-TECT/ OverThruster/ BinGoo/ hakkuframework/ BeeLogger/ CHAOS/ EggShell/ xerxes/ Tools/'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'mv NoSQLMap/ angryFuzzer/ DSXS/ ATSCAN/ car-hacking-tools/ l0l/ pentestly/ koadic/ pentmenu/ PenBox/ tulpar/ secHub/ operative-framework/ HT-WPS-Breaker/ FakeAuth/ Dracnmap/ Sn1per/ Tools/'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'mv iOSRestrictionBruteForce/ instarecon/ wifijammer/ cisco-global-exploiter/ pybomber/ vbscan/ IPMIPWN/ mitmAP/ Striker/ cpscan/ zirikatu/ KnockMail/ netattack2/ zambie/ fluxion/ ufonet/ morpheus/ RED_HAWK/ websploit/ Tools/'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'mv BruteSploit/ zarp/ discover/ extract-hashes/ astroid/ xsssniper/ Brutal/ Blazy/ Trity/ credmap/ XAttacker/ sAINT/  ARCANUS/ ezsploit/ sqliv/ shellsploit-framework/ Tools/'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'mv printerspam.sh Tools/'") ; sleep(.1)
@@ -244,6 +249,10 @@ def installer():
     os.system("xterm -T 'Setup' -e 'cd Tools/car-hacking-tools/ && make install'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'cd Tools/ATSCAN/ && chmod +x install.sh && ./install.sh'") ; sleep(.1)
     os.system("xterm -T 'Setup' -e 'cd Tools/instarecon/ && python setup.py install'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'cd Tools/NoSQLMap/ && python setup.py install'") ; sleep(.1)
+    # inguma
+    os.system("xterm -T 'Setup' -e 'tar -xf inguma-*.tar.gz && mv inguma/ Tools/'")
+    os.system("xterm -T 'Setup' -e 'rm inguma-*.tar.gz 'inguma-0.1.1.tar.gz?r=' wget-log'")
     # bluebox-ng
     os.system("xterm -T 'Setup' -e 'curl -sL https://raw.githubusercontent.com/jesusprubio/bluebox-ng/master/artifacts/installScripts/kali2.sh | sudo bash -'") ; sleep(.1)
     # only chmod
@@ -298,20 +307,19 @@ def installer():
 
 #
 def connection_detector():
-    print("[{}Fuck Society Installer{}]\n".format(bright_green, end)) ; sleep(.2)
-    sys.stdout.write("[*] Verifico Connessione Internet ")
+    print("/ {}Fuck Society Installer{}".format(bright_green, end)) ; sleep(.2)
+    sys.stdout.write("/ Verifico Connessione Internet ")
     sys.stdout.flush()
     try:
         requests.get('http://ip.42.pl/raw')
-        sys.stdout.write("[{} OK {}]\n".format(bright_green, end))
+        sys.stdout.write("[{} OK {}]".format(bright_green, end))
         sys.stdout.flush()
         time.sleep(.5)
         return main()
     except requests.exceptions.ConnectionError:
         sys.stdout.write(" [{} Fail {}]\n".format(red, end))
         sys.stdout.flush()
-        print("")
-        print("[ {}Attenzione{} ]: Disattiva {}TorGhost{} o verifica la tua connessione.\n".format(bright_yellow,end, blue,end))
+        print("/ {}Attenzione{}: Disattiva {}TorGhost{} o verifica la tua connessione.".format(bright_yellow,end, blue,end))
         sys.exit()
 connection_detector()
 #
