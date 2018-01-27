@@ -1,12 +1,13 @@
 Changelog:
 ==========
-1.0.2:
-- Nuovi Tools Aggiunti
-- Miglioramenti Generali
-- Correzioni di Piccoli Bug
+1.1.0a:
+- Bug Fix
+- Maggiore Intelligenza
+- Miglioramenti Generali e Grafici
+- Marea di Tools Aggiunti
 
+1.0.2
 1.0.1
-
 1.0.0
 
 Installazione:
