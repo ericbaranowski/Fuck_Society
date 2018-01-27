@@ -1,6 +1,6 @@
 Changelog:
 ==========
-1.1.0a:
+1.1.0:
 - Bug Fix
 - Maggiore Intelligenza
 - Miglioramenti Generali e Grafici
