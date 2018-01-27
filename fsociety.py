@@ -2260,7 +2260,7 @@ def logo_print():
             print("/ Public IP : " + blue + "-  " + end + "/ {}Attenzione{}: Disattiva {}TorGhost{} o verifica la tua connessione.".format(bright_yellow,end, blue,end))
         if KeyError:
             print("/ Interface : " + blue + "-" + end)
-    print("/ System    : {} {}".format(blue + platform.linux_distribution()[0], platform.system() + end))
+    print("/ System    : {}".format(blue + platform.linux_distribution()[0] + end))
     print("") ; sleep(.3)
     return menu()
 ################################################################################
