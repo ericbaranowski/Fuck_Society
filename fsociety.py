@@ -29,8 +29,8 @@ bright_cyan = '\033[1;36m'
 bright_yellow = '\033[1;33m'
 #
 underline = '\033[4m'
-Tools = "168 Tools"
-versione = "v1.1.0"
+Tools = "171 Tools"
+versione = "v1.1.0.1"
 
 if sys.version_info.major >= 2.7:
     print("\n/ {}Attenzione{}: Questa versione non e' supportata dal tuo sistema.".format(bright_yellow, end))
@@ -96,7 +96,7 @@ def menu():
     "xsstracer","fbht","pybomber","whatweb","commix","onioff","joomscan","hping3","miranda","snmpcheck","dhcpig",
     "sqlmap", "sqliv","jaidam","sshscan","pentmenu","a2sv","crips","vbscan","torshammer","siege","blindelephant",
     "brutesploit","medusa","jsql","dnsenum","dnsmap","dotdotpwn","metagoofil","sslyze","t50","burpsuite","uatester",
-    "cpscan","dtect", "dracnmap", "sechub", "arachni", "wpscan", "zaproxy", "zenmap", "uniscan","cutycapt",
+    "cpscan","dtect", "dracnmap", "sechub", "arachni", "wpscan", "zaproxy", "zenmap", "uniscan","cutycapt","responder",
     "droopescan", "striker","instarecon","dsxs","automater","intrace","smtpuserenum","angryfuzzer","dirbuster",
     "hydra","ftp", "xhydra", "tulpar", "bingoo","xattacker", "knockmail", "osrframework","bluelog","fimap",
     "blazy", "xsssniper","sublist3r","urlextractor","breacher","ip2host","parsero","nikto","dirb","nosqlmap",
@@ -109,7 +109,7 @@ def menu():
     "chaos", "overthruster", "arcanus", "evildroid", "ezsploit", "zirikatu",
     "astroid","kautilya","termineter","wifijammer","yersinia",
     "armitage", "setoolkit", "fatrat", "eggshell", "shellsploit", "saint","koadic",
-    "pentestly","debinject","ciscoge","patator","wole",
+    "pentestly","debinject","ciscoge","patator","wole","xspy","findmyhash",
     "beelogger","brutal","jexboss","weeman","androidpincrack","u3pwn", "ngrok",
     "l0l","extract-hash","kayak","ioscrack","cheetah","powerfuzzer",
     # MultiTool
@@ -651,6 +651,31 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
                 return menu()
         else:
             print("/ {}Errore{}: {}Medusa{} richiede una serie di argomenti validi. Digita {}medusa -h{} per i comandi.".format(red,end, blue,end, blue,end))
+            return menu()
+    elif command == 'findmyhash':
+        hash_list = ["-h","MD4","MD5","SHA1","SHA224","SHA256","SHA384","SHA512","RMD160","GOST","WHIRLPOOL","LM","NTLM","MYSQL","CISCO7","JUNIPER","LDAP_MD5","LDAP_SHA1"]
+        if option:
+            if option not in hash_list:
+                print("/ {}Errore{}: Algoritmo non valido.".format(red,end))
+                return menu()
+            if option == '-h':
+                print("")
+                print("/ {}Comandi FindMyHash{}:".format(bright_green,end))
+                print(" Come usarlo: $ findmyhash <algorithm> <hash>")
+                print("")
+                print("/ {}Algoritmi{}:".format(bright_green,end))
+                print(" [ MD4 / MD5 / SHA1 / SHA224 / SHA256 / SHA384 / SHA512 / RMD160 / GOST / WHIRLPOOL / LM ]")
+                print(" [ NTLM / MYSQL / CISCO7 / JUNIPER / LDAP_MD5 / LDAP_SHA1 ]")
+                print("")
+                return menu()
+            if argument:
+                os.system("findmyhash {} -h {}".format(option, argument))
+                return menu()
+            else:
+                print("/ {}Errore{}: Hash mancante.".format(red,end, blue,end))
+                return menu()
+        else:
+            print("/ {}Errore{}: {}FindMyHash{} richiede una serie di argomenti. Digita {}findmyhash -h{} per i comandi.".format(red,end, blue,end, blue,end))
             return menu()
 
     # Sistema
@@ -1729,6 +1754,7 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
         print("")
         time.sleep(3)
         os.system("cdpsnarf -i {} -w Logs/CDPSnarf.pcap".format(netifaces.gateways()['default'][netifaces.AF_INET][1]))
+        print("")
         return menu()
     elif command == 'cookie-cadger':
         os.system("gnome-terminal -- cookie-cadger")
@@ -1978,6 +2004,13 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
         else:
             print("/ {}Errore{}: {}WOL-E{} richiede un modulo valido. Digita {}wole -h{} per i comandi.".format(red,end, blue,end, blue,end))
             return menu()
+    elif command == 'responder':
+        os.system("responder -wrfdbv -P -I {}".format(netifaces.gateways()['default'][netifaces.AF_INET][1]))
+        print("")
+        return menu()
+    elif command == 'xspy':
+        os.system("gnome-terminal -- xspy")
+        return menu()
 
     # MultiTool
     elif command == 'hakkuf' or command == 'hakku':
@@ -2139,17 +2172,17 @@ def help():
     print("$ help - info - banner - reload - net * - repo_update - mapscii - updatedb - restart - ftp ") ; sleep(.01)
     print("$ reboot - shutdown - os * - ping * - unbug - kill - ifconfig [*] - quit/exit              ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("{}Spoofing:{}                                                                              ".format(bright_green + underline, end)) ; sleep(.01)
+    print("{}Spoofing{}:                                                                              ".format(bright_green + underline, end)) ; sleep(.01)
     print("$ torghot [stop/start] - macchanger                                                        ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("{}Cracking:{}                                                                              ".format(bright_green + underline, end)) ; sleep(.01)
-    print("$ androidpincrack * - extract-hash * - ioscrack *                                          ") ; sleep(.01)
+    print("{}Password Attacks{}:                                                                      ".format(bright_green + underline, end)) ; sleep(.01)
+    print("$ androidpincrack * - extract-hash * - ioscrack * - findmyhash *                           ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("{}Sniffing:{}                                                                              ".format(bright_green + underline, end)) ; sleep(.01)
+    print("{}Sniffing{}:                                                                              ".format(bright_green + underline, end)) ; sleep(.01)
     print("$ bettercap - ettercap - morpheus - wireshark - mitmf - mitmap - cdpsnarf - cookie-cadger  ") ; sleep(.01)
     print("$ p0f - sslstrip - bluelog                                                                 ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("{}Scanning:{}                                                                              ".format(bright_green + underline, end)) ; sleep(.01)
+    print("{}Scanning{}:                                                                              ".format(bright_green + underline, end)) ; sleep(.01)
     print("-{}Local{}:                                                                                ".format(bright_green, end))
     print("$ nmap * - netdiscover - ciscotorch * - snmpcheck * - dhcpig                               ") ; sleep(.01)
     print("-{}Web{}:                                                                                  ".format(bright_green, end)) ; sleep(.01)
@@ -2168,20 +2201,20 @@ def help():
     print("--{}All-in-one{}:                                                                          ".format(bright_green, end)) ; sleep(.01)
     print("$ sechub - tulpar * - pentmenu                                                             ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("{}Gathering:{}                                                                             ".format(bright_green + underline, end)) ; sleep(.01)
+    print("{}Gathering{}:                                                                             ".format(bright_green + underline, end)) ; sleep(.01)
     print("-{}Geolocalization{}:                                                                      ".format(bright_green, end)) ; sleep(.01)
     print("$ geoip * - whois *                                                                        ") ; sleep(.01)
     print("-{}Credentials Verification{}:                                                             ".format(bright_green, end)) ; sleep(.01)
     print("$ credmap * - knockmail                                                                    ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("{}Networking:{}                                                                            ".format(bright_green + underline, end)) ; sleep(.01)
+    print("{}Networking{}:                                                                            ".format(bright_green + underline, end)) ; sleep(.01)
     print("-{}WiFi Attacks{}:                                                                         ".format(bright_green, end)) ; sleep(.01)
     print("$ airgeddon - fakeauth - fluxion - netattack - wifijammer - wpsbreaker - wifiphisher *     ") ; sleep(.01)
     print("$ wifite                                                                                   ") ; sleep(.01)
     print("-{}Exploitation{} ({}Local + Non-Local{}):                                                 ".format(bright_green,end, bright_green,end)) ; sleep(.01)
     print("$ routersploit - eggshell - armitage - jexboss * - setoolkit - msfconsole - l0l - yersinia ") ; sleep(.01)
     print("$ weeman - shellsploit - wirespy - printerspam - koadic - pentestly - termineter - wole *  ") ; sleep(.01)
-    print("$ kayak - pybomber * - ciscoge *                                                           ") ; sleep(.01)
+    print("$ kayak - pybomber * - ciscoge * - responder                                               ") ; sleep(.01)
     print("-{}Web Exploitation{}:                                                                     ".format(bright_green, end)) ; sleep(.01)
     print("--{}Stress Testing{}:                                                                      ".format(bright_green, end)) ; sleep(.01)
     print("$ zambie - xerxes * - ufonet - goldeneye * - torshammer * - t50 * - thcssldos *            ") ; sleep(.01)
@@ -2196,16 +2229,16 @@ def help():
     print("--{}Wan{}:                                                                                 ".format(bright_green,end)) ; sleep(.01)
     print("$ ngrok [tcp/http/tsl] [port]                                                              ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("{}Exploiting:{}                                                                            ".format(bright_green + underline, end)) ; sleep(.01)
+    print("{}Exploiting{}:                                                                            ".format(bright_green + underline, end)) ; sleep(.01)
     print("-{}Payload Generator{}:                                                                    ".format(bright_green, end)) ; sleep(.01)
     print("$ chaos - arcanus - debinject - u3pwn - fatrat - zirikatu - ezsploit - astroid - kautilya  ") ; sleep(.01)
     print("$ evildroid - brutal - overthruster                                                        ") ; sleep(.01)
-    print("-{}Keylogger Generator{}:                                                                  ".format(bright_green, end)) ; sleep(.01)
-    print("$ beelogger                                                                                ") ; sleep(.01)
+    print("-{}Keylogging{}:                                                                           ".format(bright_green, end)) ; sleep(.01)
+    print("$ beelogger - xspy                                                                         ") ; sleep(.01)
     print("-{}Spyware Generator{}:                                                                    ".format(bright_green, end)) ; sleep(.01)
     print("$ saint                                                                                    ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("{}All-in-one:{}                                                                            ".format(bright_green + underline, end)) ; sleep(.01)
+    print("{}All-in-one{}:                                                                            ".format(bright_green + underline, end)) ; sleep(.01)
     print("$ hakkuf - trity - pythem - penbox - bluebox-ng - simple-ducky - discover - zarp - atscan  ") ; sleep(.01)
     print("$ sb0x - inguma - websploit                                                                ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
@@ -2237,10 +2270,10 @@ def logo_menu():
     os.system("reset")
     now = datetime.datetime.now()
     print("")
-    print('  88F888 88   88  dP""db 88  dP     .dP"Y8  dP"Yb   dP""b8 88 888888 888888 Yb  dP        ') ; sleep(.02)
+    print('  888888 88   88  dP""db 88  dP     .dP"Y8  dP"Yb   dP""b8 88 888888 888888 Yb  dP        ') ; sleep(.02)
     print('  88__   88   88 dP   `" 88odP      `Ybo." dP   Yb dP   `" 88 88__     88    YbdP         ') ; sleep(.02)
     print('  88""   Y8   8P Yb      88"Yb      o.`Y8b Yb   dP Yb      88 88""     88     8P          ') ; sleep(.02)
-    print('  88     `YbudP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  [{}]'.format(red+versione+end)) ; sleep(.02)
+    print('  88     `YbudP   YboodP 88  Yb     8bodP   YbodP   YboodP 88 888888   88    dP  {}'.format(red+versione+end)) ; sleep(.02)
     print(" [ {}Not_Found_Error{} / {}{}{} ]                                                         ".format(bright_green,end, bright_green,Tools,end)) ; sleep(.02)
     print("") ; sleep(.3)
     try:
@@ -2324,36 +2357,35 @@ def initparser():
     parser.add_argument("-s","--start",action="store_true",required=False)
     parser.add_argument("-ns","--nostartup",action="store_true",required=False)
     parser.add_argument("-fy","--fuckyou",action="store_true",required=False)
+    parser.add_argument("--resolve",action="store_true",required=False)
+    parser.add_argument("--apt",action="store_true",required=False)
     args = parser.parse_args()
     if args.help:
-        print("""/ {}Fuck Society{} / Autore: {}Not_Found_Error{}
-/ {}Condizioni{}:
-    Rubare dati, invadere la Privacy di altre persone, e altro ancora sono
-    reati perseguibili penalmente. Con questo, non mi assumo nessuna
-    responsabilita' per l'uso che ne farai di questo programma.
-    {}Hai un cervello, dunque pensa prima di premere invio!{}
+        print("""
+                ---+[ {}Fuck Society{} / Autore: {}Not_Found_Error{} ]+---
 
-Come uarlo:
-$ python fsociety.py [ -h ] [ -v ] [ -s ] [ -ns ] [ -fy ]
+{}Come usarlo{}:
+$ python fsociety.py [ option ]
 
 / {}Comandi{}:
     -h  --help                Mostra questa schermata ed esci
     -v  --version             Mostra la versione ed esci
     -s  --start               Avvia Fsociety
+    --resolve                 Risolvi problemi di rete
+    --apt                     Aggiorna il computer
 
 / {}Comandi Avanzati{}:
     -ns --nostartup           Bypassa il caricamento iniziale
     -fy --fuckyou             Bypassa ogni tipo di blocco (possibili errori)
                               (verrai portato instantaneamente al menu)
-""".format(bright_green,end, bright_green,end, underline + bright_green,end, red,end, bright_green,end, bright_green,end))
+""".format(bright_green,end, bright_green,end, bright_green,end, underline + bright_green,end, bright_green + underline, end))
         sys.exit()
     if args.version:
         print("/ {}Fuck Society{}".format(bright_green,end))
         print("/ Versione {}".format(red+versione+end))
         sys.exit()
     if args.start:
-        os.system("echo 'file destinato al macello' > Logs/verify_first_boot.txt") # verifica primo avvio
-        logo_menu()
+        firststartup()
     if args.nostartup:
         try:
             installer_done = open("Tools/Complete.txt")
@@ -2365,6 +2397,19 @@ $ python fsociety.py [ -h ] [ -v ] [ -s ] [ -ns ] [ -fy ]
         return logo_menu()
     if args.fuckyou:
         return menu()
+    if args.resolve:
+        os.system("echo 'nameserver 8.8.8.8' > /etc/resolv.conf")
+        print("[ {}OK{} ] File {}/etc/resolv.conf{} aggiornato".format(bright_green,end, blue,end))
+        os.system("service network-manager restart")
+        print("[ {}OK{} ] Servizio {}network-manager{} riavviato".format(bright_green,end, blue,end))
+        sys.exit()
+    if args.apt:
+        sys.stdout.write("/ Aggiorno ")
+        sys.stdout.flush()
+        os.system("xterm -T 'Updating...' -e 'apt update && apt upgrade -y && apt dist-upgrade -y && apt autoremove -y'")
+        sys.stdout.write("[ {}DONE{} ]\n".format(bright_green,end))
+        sys.stdout.flush()
+        sys.exit()
     if args:
         try:
             installer_done = open("Tools/Complete.txt")
