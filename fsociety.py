@@ -30,7 +30,7 @@ bright_yellow = '\033[1;33m'
 #
 underline = '\033[4m'
 Tools = "171 Tools"
-versione = "v1.1.0.1"
+versione = "v1.1.0.2"
 
 if sys.version_info.major >= 2.7:
     print("\n/ {}Attenzione{}: Questa versione non e' supportata dal tuo sistema.".format(bright_yellow, end))
@@ -267,14 +267,12 @@ def menu():
     elif command == 'repo_update':
         get_sys = platform.linux_distribution()[0] + platform.system()
         if get_sys != 'KaliLinux':
-            print("/ {}Attenzione{}: Impossibile aggiornare la lista delle repository. Questa opzione e'".format(bright_yellow,end))
+            print("/ {}Errore{}: Impossibile aggiornare la lista delle repository. Questa opzione e'".format(red,end))
             print("              compatibile solamente col sistema {}Kali Linux{}.".format(blue,end))
             return menu()
         sources_list_update = """
 deb https://http.kali.org/kali kali-rolling main non-free contrib
-deb-src https://http.kali.org/kali kali-rolling main non-free contrib
-deb http://repo.kali.org/kali kali-rolling main non-free contrib
-deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
+deb-src https://http.kali.org/kali kali-rolling main non-free contrib"""
         os.system('echo "{}" > /etc/apt/sources.list'.format(sources_list_update))
         print("/ {}Attenzione{}: File {}sources.list{} aggiornato. ({}/etc/apt/sources.list{})".format(bright_yellow, end,blue, end, blue, end))
         print("/ Digita {}apt{} per aggiornare il sistema.".format(blue, end))
@@ -283,6 +281,7 @@ deb-src https://repo.kali.org/kali kali-rolling main non-free contrib"""
     elif command == 'net':
         if option:
             if option == 'resolve':
+                os.system("rm /etc/resolv.conf")
                 os.system("echo 'nameserver 8.8.8.8' > /etc/resolv.conf")
                 print("[ {}OK{} ] File {}/etc/resolv.conf{} aggiornato.".format(bright_green,end, blue,end))
                 return menu()
@@ -2357,8 +2356,6 @@ def initparser():
     parser.add_argument("-s","--start",action="store_true",required=False)
     parser.add_argument("-ns","--nostartup",action="store_true",required=False)
     parser.add_argument("-fy","--fuckyou",action="store_true",required=False)
-    parser.add_argument("--resolve",action="store_true",required=False)
-    parser.add_argument("--apt",action="store_true",required=False)
     args = parser.parse_args()
     if args.help:
         print("""
@@ -2371,8 +2368,6 @@ $ python fsociety.py [ option ]
     -h  --help                Mostra questa schermata ed esci
     -v  --version             Mostra la versione ed esci
     -s  --start               Avvia Fsociety
-    --resolve                 Risolvi problemi di rete
-    --apt                     Aggiorna il computer
 
 / {}Comandi Avanzati{}:
     -ns --nostartup           Bypassa il caricamento iniziale
@@ -2397,19 +2392,6 @@ $ python fsociety.py [ option ]
         return logo_menu()
     if args.fuckyou:
         return menu()
-    if args.resolve:
-        os.system("echo 'nameserver 8.8.8.8' > /etc/resolv.conf")
-        print("[ {}OK{} ] File {}/etc/resolv.conf{} aggiornato".format(bright_green,end, blue,end))
-        os.system("service network-manager restart")
-        print("[ {}OK{} ] Servizio {}network-manager{} riavviato".format(bright_green,end, blue,end))
-        sys.exit()
-    if args.apt:
-        sys.stdout.write("/ Aggiorno ")
-        sys.stdout.flush()
-        os.system("xterm -T 'Updating...' -e 'apt update && apt upgrade -y && apt dist-upgrade -y && apt autoremove -y'")
-        sys.stdout.write("[ {}DONE{} ]\n".format(bright_green,end))
-        sys.stdout.flush()
-        sys.exit()
     if args:
         try:
             installer_done = open("Tools/Complete.txt")

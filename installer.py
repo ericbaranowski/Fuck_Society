@@ -104,13 +104,13 @@ def installer():
     #
     sys.stdout.write(" Rimuovo Vecchie Cartelle".format(bright_green,end))
     sys.stdout.flush()
-    os.system("xterm -T 'Setup' -e 'rm Logs/ -r && rm Tools/ -r && rm Oth/ -r'") ; sleep(.1)
+    os.system("xterm -T 'Setup' -e 'rm Logs/ Tools/ Oth/ -r'") ; sleep(.1)
     sys.stdout.write(10 * " " + "[ {}DONE{} ]\n".format(bright_green,end))
     sys.stdout.flush()
     #
     sys.stdout.write(" Creo Nuove Cartelle".format(bright_green,end))
     sys.stdout.flush()
-    os.system("mkdir Logs && mkdir Tools && mkdir Oth")
+    os.system("xterm -T 'setup' -e 'mkdir Logs && mkdir Tools && mkdir Oth'")
     sys.stdout.write(15 * " " + "[ {}DONE{} ]\n".format(bright_green,end))
     sys.stdout.flush()
     #
