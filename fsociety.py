@@ -2217,8 +2217,8 @@ def help():
     print("$ hakkuf - trity - pythem - penbox - bluebox-ng - simple-ducky - discover - zarp - atscan  ") ; sleep(.01)
     print("$ sb0x - inguma - websploit                                                                ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
-    print("/ {}Attenzione{}: L'asterisco (*) indica la richiesta di un input. Digita il nome di un  ".format(bright_yellow,end)) ; sleep(.01)
-    print("                Tool per ulteriori informazioni su di esso.                                ") ; sleep(.01)
+    print("/ {}Attenzione{}: L'asterisco (*) indica la richiesta di un input. Digita il nome di un    ".format(bright_yellow,end)) ; sleep(.01)
+    print("              Tool per ulteriori informazioni su di esso.                                  ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
     return menu()
 ################################################################################
