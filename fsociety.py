@@ -83,8 +83,8 @@ def menu():
                 return None
     completer = MyCompleter([
     # Comandi - unica categoria
-    "apt", "torghost", "os", "shutdown", "reboot", "help", "info", "updatedb", "repo_update",
-    "ifconfig", "macchanger", "anOFF", "anON", "msfconsole", "ftp","unbug", "net","mapscii",
+    "apt", "torghost", "os", "shutdown", "reboot", "help", "info", "updatedb",
+    "ifconfig", "macchanger", "anOFF", "anON", "msfconsole", "ftp","unbug", "net_restart","mapscii",
     "restart", "reload", "kill", "quit", "exit","ping",
     # Local Scanning
     "nmap","netdiscover","amap","ciscotorch",
@@ -264,34 +264,10 @@ def menu():
             print("/ {}Errore{}: {}os{} richiede un comando qualunque (massimo 9 argomenti).".format(red,end, blue,end))
         return menu()
 
-    elif command == 'repo_update':
-        get_sys = platform.linux_distribution()[0] + platform.system()
-        if get_sys != 'KaliLinux':
-            print("/ {}Errore{}: Impossibile aggiornare la lista delle repository. Questa opzione e'".format(red,end))
-            print("              compatibile solamente col sistema {}Kali Linux{}.".format(blue,end))
-            return menu()
-        sources_list_update = """
-deb https://http.kali.org/kali kali-rolling main non-free contrib
-deb-src https://http.kali.org/kali kali-rolling main non-free contrib"""
-        os.system('echo "{}" > /etc/apt/sources.list'.format(sources_list_update))
-        print("/ {}Attenzione{}: File {}sources.list{} aggiornato. ({}/etc/apt/sources.list{})".format(bright_yellow, end,blue, end, blue, end))
-        print("/ Digita {}apt{} per aggiornare il sistema.".format(blue, end))
+    elif command == 'net_restart':
+        os.system("service network-manager restart")
+        print("[ {}OK{} ] Servizio {}network-manager{} riavviato.".format(bright_green,end, blue,end))
         return menu()
-
-    elif command == 'net':
-        if option:
-            if option == 'resolve':
-                os.system("rm /etc/resolv.conf")
-                os.system("echo 'nameserver 8.8.8.8' > /etc/resolv.conf")
-                print("[ {}OK{} ] File {}/etc/resolv.conf{} aggiornato.".format(bright_green,end, blue,end))
-                return menu()
-            elif option == 'restart':
-                os.system("service network-manager restart")
-                print("[ {}OK{} ] Servizio {}network-manager{} riavviato.".format(bright_green,end, blue,end))
-                return menu()
-        else:
-            print("/ {}Errore{}: {}net{} richiede un argomento tra {}restart{} e {}resolve{}.".format(red,end, blue,end, blue,end, blue,end))
-            return menu()
     elif command == 'service':
         if option:
             if argument == 'start' or argument == 'restart' or argument == 'stop' or argument == 'reload':
@@ -2168,8 +2144,8 @@ deb-src https://http.kali.org/kali kali-rolling main non-free contrib"""
 def help():
     print("")
     print("{}Comandi{}:                                                                               ".format(bright_green + underline, end)) ; sleep(.01)
-    print("$ help - info - banner - reload - net * - repo_update - mapscii - updatedb - restart - ftp ") ; sleep(.01)
-    print("$ reboot - shutdown - os * - ping * - unbug - kill - ifconfig [*] - quit/exit              ") ; sleep(.01)
+    print("$ help - info - banner - reload - net_restart - mapscii - updatedb - restart - ftp - unbug ") ; sleep(.01)
+    print("$ reboot - shutdown - ifconfig [*] - os * - ping * - kill - quit/exit                      ") ; sleep(.01)
     print("                                                                                           ") ; sleep(.01)
     print("{}Spoofing{}:                                                                              ".format(bright_green + underline, end)) ; sleep(.01)
     print("$ torghot [stop/start] - macchanger                                                        ") ; sleep(.01)
